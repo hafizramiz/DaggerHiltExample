@@ -1,0 +1,70 @@
+Once Dependency ekle.
+
+build gradle dosyasi
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id("com.android.application") version "8.1.2" apply false
+    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
+    id("com.google.dagger.hilt.android") version "2.44" apply false
+}
+
+Daha sonra diger build gradle
+en ustteki plugin yazan yer
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
+
+}
+
+....
+
+  // Dagger
+    implementation ("com.google.dagger:hilt-android:2.44'")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    kapt ("com.google.dagger:hilt-android-compiler:2.44")
+
+Daha sonra uygulamanin baslangic noktasina @HiltAndroidApp ekle
+
+// Burdda  Application'dan turetip uygulama acilirken db baslatacagim.
+@HiltAndroidApp
+class WordApplication : Application() {
+    // Burda lazy olmasinin sebebi database'e ihtiyac oldugunda olusturulacak olmasidir.
+    // Ihtiyac olmazsa ornegin herhengi sorgu atip veriyi ekranda gostermezsek
+    // db olusmuyor. Bunu test ettim.
+
+    val database: WordDatabase by lazy {
+        WordDatabase.getDatabase(this)
+        // Burda getDatabase sinifi WordDatabase turunde bir nesne donduruyor. Bunu da companion object icinde yazdik ya
+        // orda iste bir instance olusturup dondurecek. companion object neydi siniflar icinde singleton obje
+        // dondurmek icin kullaniliyordu
+    }
+}
+
+
+Daha sinra MainActivity icinde @AndroidEntryPoit eklemesin
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+   // lateinit var player:MusicPlayer
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+       // player.play();
+        super.onCreate(savedInstanceState)
+        setContent {
+            KelimeyiBulTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                     //HomeScreen()
+                   // WordEntryScreen()
+                    WordApp()
+                }
+            }
+        }
+    }
+}

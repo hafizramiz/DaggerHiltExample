@@ -1,0 +1,36 @@
+
+HILT ILE MANUEL DEPENDENCY INJECTION FARKINI ANLAMAK ICIN KARSILARTIRMA YAPALIM
+
+MANUEL DI
+class MarsPhotosApplication : Application() {
+     lateinit var container: AppContainer
+     override fun onCreate() {
+         super.onCreate()
+         container = DefaultAppContainer()
+     }
+ }
+@AndroidEntryPoint yapinca bunlarin hepsini kendi yapiyor.
+
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var  player: MusicPlayer
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        player.play()
+        setContent {
+            QuizAppTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Greeting("Android")
+                }
+            }
+        }
+    }
+}
+
+Burdaki @AndroidEntryPoint oncreate icinde create edilecek onCreate metotunun icindekini yapiyor.

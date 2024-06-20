@@ -1,0 +1,40 @@
+@HiltAndroidApp annotation nedir
+MyApplication sinifi olustur. Onun Application sinifindan inherit al
+@HiltAndroidApp ile annotate et.
+Daha sonra manifest'e ekle
+Daha sonra Entry point soylememiz gerekiyor.
+Iki farkli enjection cesidi vardir
+    Field Enjection
+    Constructor Enjection
+
+@AndroidEntryPoint
+MainActivity(){
+
+    lateinit var m1: Musician
+
+    onCreate(){
+        m1.sing()   dersem hata alcam. Cunku Musician sinifi initialize edilmedi.
+        }
+
+}
+
+// Contsrcutor Injection nedir? Burda bunu yapcam.
+
+class Musician
+@Inject constructor(Instrument: instrument)
+    {
+    fun sing(){
+        println( " sing metotu calisiyor")}
+         }
+
+
+class Instrument @Inject constructor(){
+    Burasi instance field oluyor zaten.
+    }
+
+Hilt Compile time da calisiyor
+
+Scope nedir?
+
+Kendi annotaion classlarimizi olusturma
+

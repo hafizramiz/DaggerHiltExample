@@ -1,0 +1,4 @@
+HiltAndroidApp Application sinifindan inherit alan siniflarda kullaniliyor.
+
+@HiltAndroidApp
+class QuizApplication : Application(){}

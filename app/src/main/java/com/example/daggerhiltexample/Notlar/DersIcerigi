@@ -1,0 +1,7 @@
+data.remote  isimli bir package olustur.
+dagget, hilt, view model ve retrofit kutuphanelerini yukle
+
+simdi ilk data package olusturduk. sonra remote orda retrofit kullanrak api dan veri cektik.
+domain package olustur. icinde repository package olustur.Icinde repository interface olustur,
+MyReposirtory interface icinde  doNetWorkCall metotu olustur.
+

@@ -1,0 +1,8 @@
+// Eger class ise boyle yapariz. Ama interface de yapamayiz.
+class MusicDatabase
+@Inject constructor(){
+}
+// Boyle yapamiyoruz.
+interface IMusicDatabase
+@Inject constructor(){
+}
